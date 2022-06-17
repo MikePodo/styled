@@ -1,4 +1,4 @@
-export const PRODUCT_QUERY: String = `
+export const PRODUCT_QUERY: string = `
   query {
     products {
       data {
