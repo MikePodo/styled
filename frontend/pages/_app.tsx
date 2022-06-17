@@ -3,7 +3,8 @@ import { Provider, createClient } from "urql";
 
 import "../styles/globals.css";
 
-const client = createClient({ url: "http://localhost:1337/graphql" });
+const url: string = process.env.NEXT_PUBLIC_BACKEND_API!;
+const client = createClient({ url });
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
