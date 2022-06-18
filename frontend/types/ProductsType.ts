@@ -1,4 +1,4 @@
-interface ProductImage {
+export interface ProductImage {
   data: {
     attributes: {
       formats: {
