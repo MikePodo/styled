@@ -6,6 +6,7 @@ export const ProductDetailsStyle = styled.div`
   margin-top: 5rem;
   img {
     width: 40%;
+    object-fit: cover;
   }
 `;
 
@@ -44,6 +45,7 @@ export const QuantityStyle = styled.div`
 export const BuyStyle = styled.button`
   width: 100%;
   background: var(--primary);
+  border: none;
   color: white;
   font-weight: 500;
 `;
