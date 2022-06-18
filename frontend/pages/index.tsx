@@ -2,7 +2,10 @@ import type { NextPage } from "next";
 import { useQuery } from "urql";
 
 import { PRODUCT_QUERY } from "~lib/query";
+
 import { ProductType } from "~types/ProductsType";
+
+import { GalleryStyle } from "~styles/util/GalleryStyle";
 
 import Product from "~components/Product";
 
@@ -18,9 +21,11 @@ const Home: NextPage = () => {
 
   return (
     <div>
-      {products.map((product: ProductType) => (
-        <Product product={product} key={product.attributes.slug} />
-      ))}
+      <GalleryStyle>
+        {products.map((product: ProductType) => (
+          <Product product={product} key={product.attributes.slug} />
+        ))}
+      </GalleryStyle>
     </div>
   );
 };
