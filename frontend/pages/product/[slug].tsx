@@ -27,7 +27,7 @@ const ProductDetails = () => {
   const { data, fetching, error } = results;
 
   //Context state
-  const { qty, increaseQty, decreaseQty } = useStateContext();
+  const { qty, increaseQty, decreaseQty, onAddProduct } = useStateContext();
 
   if (fetching) return <h2>Loading...</h2>;
   if (error) return <h2>An error has occurred: {error.message}</h2>;
@@ -55,7 +55,11 @@ const ProductDetails = () => {
             <AiFillPlusCircle onClick={increaseQty} />
           </button>
         </QuantityStyle>
-        <BuyStyle>Add to cart</BuyStyle>
+        <BuyStyle
+          onClick={() => onAddProduct(data.products.data[0].attributes, qty)}
+        >
+          Add to cart
+        </BuyStyle>
       </ProductInfoStyle>
     </ProductDetailsStyle>
   );
