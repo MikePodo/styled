@@ -1,6 +1,8 @@
 import type { AppProps } from "next/app";
 import { Provider, createClient } from "urql";
 
+import { StateContext } from "~lib/context";
+
 import "~styles/globals.css";
 
 import Nav from "~components/Nav";
@@ -10,10 +12,12 @@ const client = createClient({ url });
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Provider value={client}>
-      <Nav />
-      <Component {...pageProps} />
-    </Provider>
+    <StateContext>
+      <Provider value={client}>
+        <Nav />
+        <Component {...pageProps} />
+      </Provider>
+    </StateContext>
   );
 }
 

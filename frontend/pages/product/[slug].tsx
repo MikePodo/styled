@@ -4,6 +4,7 @@ import { useQuery } from "urql";
 import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
 
 import { GET_PRODUCT_QUERY } from "~lib/query";
+import { useStateContext } from "~lib/context";
 
 import { ProductImage } from "~types/ProductsType";
 
@@ -15,6 +16,7 @@ import {
 } from "~styles/pages/product/ProductDetailsStyle";
 
 const ProductDetails = () => {
+  //Router query
   const { query } = useRouter();
 
   const [results] = useQuery({
@@ -23,6 +25,9 @@ const ProductDetails = () => {
   });
 
   const { data, fetching, error } = results;
+
+  //Context state
+  const { qty, increaseQty, decreaseQty } = useStateContext();
 
   if (fetching) return <h2>Loading...</h2>;
   if (error) return <h2>An error has occurred: {error.message}</h2>;
@@ -43,11 +48,11 @@ const ProductDetails = () => {
         <QuantityStyle>
           <span>Quantity</span>
           <button>
-            <AiFillMinusCircle />
+            <AiFillMinusCircle onClick={decreaseQty} />
           </button>
-          <p>0</p>
+          <p>{qty}</p>
           <button>
-            <AiFillPlusCircle />
+            <AiFillPlusCircle onClick={increaseQty} />
           </button>
         </QuantityStyle>
         <BuyStyle>Add to cart</BuyStyle>
