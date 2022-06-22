@@ -64,4 +64,14 @@ export const ProductCardInfoStyle = styled.div`
   }
 `;
 
-export const QuantityStyle = styled.div``;
+export const CheckoutStyle = styled.div`
+  button {
+    background: var(--primary);
+    padding: 1rem 2rem;
+    width: 100%;
+    color: white;
+    margin-top: 2rem;
+    cursor: pointer;
+    border: none;
+  }
+`;

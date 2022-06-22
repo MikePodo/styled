@@ -10,11 +10,13 @@ import {
   EmptyStyle,
   ProductCardStyle,
   ProductCardInfoStyle,
-  QuantityStyle,
+  CheckoutStyle,
 } from "~styles/components/CartStyle";
+import { QuantityStyle } from "~styles/pages/product/ProductDetailsStyle";
 
 const Cart = () => {
-  const { cartItems, setShowCart, onAddProduct } = useStateContext();
+  const { cartItems, setShowCart, onAddProduct, onRemoveProduct, totalPrice } =
+    useStateContext();
 
   return (
     <CartWrapperStyle onClick={() => setShowCart(false)}>
@@ -27,27 +29,33 @@ const Cart = () => {
         )}
         {cartItems.length >= 1 &&
           cartItems.map((item) => (
-            <ProductCardStyle>
+            <ProductCardStyle key={item.slug}>
               <img
                 src={item.image.data.attributes.formats.thumbnail.url}
                 alt={item.title}
               />
               <ProductCardInfoStyle>
                 <h3>{item.title}</h3>
-                <h3>{item.price}</h3>
+                <h3>${item.price}</h3>
                 <QuantityStyle>
                   <span>Quantity</span>
                   <button>
-                    <AiFillMinusCircle />
+                    <AiFillMinusCircle onClick={() => onRemoveProduct(item)} />
                   </button>
                   <p>{item.qty}</p>
                   <button>
-                    <AiFillPlusCircle />
+                    <AiFillPlusCircle onClick={() => onAddProduct(item, 1)} />
                   </button>
                 </QuantityStyle>
               </ProductCardInfoStyle>
             </ProductCardStyle>
           ))}
+        {cartItems.length >= 1 && (
+          <CheckoutStyle>
+            <h3>Subtotal: ${totalPrice}</h3>
+            <button>Purchase</button>
+          </CheckoutStyle>
+        )}
       </CartStyle>
     </CartWrapperStyle>
   );
