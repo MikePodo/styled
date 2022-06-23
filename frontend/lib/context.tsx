@@ -39,7 +39,7 @@ export const StateContext = ({ children }: ContextProps) => {
 
   const onAddProduct = (product: ProductType["attributes"], qty: number) => {
     //Update total price
-    setTotalPrice((prev) => prev + product.price * 5);
+    setTotalPrice((prev) => prev + product.price * qty);
 
     //Increase total qty
     setTotalQty((prev) => prev + qty);
