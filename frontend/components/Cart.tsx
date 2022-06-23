@@ -14,22 +14,35 @@ import {
 } from "~styles/components/CartStyle";
 import { QuantityStyle } from "~styles/pages/product/ProductDetailsStyle";
 
+import {
+  CartWrapperAnimation,
+  CartAnimation,
+  EmptyAnimation,
+  ProductCardAnimation,
+} from "~animations/components/CartAnimation";
+
 const Cart = () => {
   const { cartItems, setShowCart, onAddProduct, onRemoveProduct, totalPrice } =
     useStateContext();
 
   return (
-    <CartWrapperStyle onClick={() => setShowCart(false)}>
-      <CartStyle onClick={(e) => e.stopPropagation()}>
+    <CartWrapperStyle
+      onClick={() => setShowCart(false)}
+      {...CartWrapperAnimation}
+    >
+      <CartStyle
+        onClick={(e: React.MouseEvent<HTMLElement>) => e.stopPropagation()}
+        {...CartAnimation}
+      >
         {cartItems.length < 1 && (
-          <EmptyStyle>
+          <EmptyStyle {...EmptyAnimation}>
             <h1>You have more shopping to do!</h1>
             <FaShoppingCart />
           </EmptyStyle>
         )}
         {cartItems.length >= 1 &&
           cartItems.map((item) => (
-            <ProductCardStyle key={item.slug}>
+            <ProductCardStyle key={item.slug} {...ProductCardAnimation}>
               <img
                 src={item.image.data.attributes.formats.thumbnail.url}
                 alt={item.title}

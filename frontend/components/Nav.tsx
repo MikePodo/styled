@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { AnimatePresence } from "framer-motion";
 import { FiShoppingBag } from "react-icons/fi";
 
 import { useStateContext } from "~lib/context";
@@ -21,7 +22,7 @@ const Nav = () => {
           <h3>Cart</h3>
         </div>
       </NavItems>
-      {showCart && <Cart />}
+      <AnimatePresence>{showCart && <Cart />}</AnimatePresence>
     </NavStyle>
   );
 };
