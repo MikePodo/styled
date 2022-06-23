@@ -8,6 +8,7 @@ import {
   CartWrapperStyle,
   CartStyle,
   EmptyStyle,
+  ProductCardStaggerStyle,
   ProductCardStyle,
   ProductCardInfoStyle,
   CheckoutStyle,
@@ -18,7 +19,9 @@ import {
   CartWrapperAnimation,
   CartAnimation,
   EmptyAnimation,
+  ProductCardStaggerAnimation,
   ProductCardAnimation,
+  CheckoutAnimation,
 } from "~animations/components/CartAnimation";
 
 const Cart = () => {
@@ -40,31 +43,35 @@ const Cart = () => {
             <FaShoppingCart />
           </EmptyStyle>
         )}
-        {cartItems.length >= 1 &&
-          cartItems.map((item) => (
-            <ProductCardStyle key={item.slug} {...ProductCardAnimation}>
-              <img
-                src={item.image.data.attributes.formats.thumbnail.url}
-                alt={item.title}
-              />
-              <ProductCardInfoStyle>
-                <h3>{item.title}</h3>
-                <h3>${item.price}</h3>
-                <QuantityStyle>
-                  <span>Quantity</span>
-                  <button>
-                    <AiFillMinusCircle onClick={() => onRemoveProduct(item)} />
-                  </button>
-                  <p>{item.qty}</p>
-                  <button>
-                    <AiFillPlusCircle onClick={() => onAddProduct(item, 1)} />
-                  </button>
-                </QuantityStyle>
-              </ProductCardInfoStyle>
-            </ProductCardStyle>
-          ))}
+        <ProductCardStaggerStyle {...ProductCardStaggerAnimation}>
+          {cartItems.length >= 1 &&
+            cartItems.map((item) => (
+              <ProductCardStyle key={item.slug} {...ProductCardAnimation}>
+                <img
+                  src={item.image.data.attributes.formats.thumbnail.url}
+                  alt={item.title}
+                />
+                <ProductCardInfoStyle>
+                  <h3>{item.title}</h3>
+                  <h3>${item.price}</h3>
+                  <QuantityStyle>
+                    <span>Quantity</span>
+                    <button>
+                      <AiFillMinusCircle
+                        onClick={() => onRemoveProduct(item)}
+                      />
+                    </button>
+                    <p>{item.qty}</p>
+                    <button>
+                      <AiFillPlusCircle onClick={() => onAddProduct(item, 1)} />
+                    </button>
+                  </QuantityStyle>
+                </ProductCardInfoStyle>
+              </ProductCardStyle>
+            ))}
+        </ProductCardStaggerStyle>
         {cartItems.length >= 1 && (
-          <CheckoutStyle>
+          <CheckoutStyle {...CheckoutAnimation}>
             <h3>Subtotal: ${totalPrice}</h3>
             <button>Purchase</button>
           </CheckoutStyle>

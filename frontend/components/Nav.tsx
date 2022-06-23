@@ -1,11 +1,13 @@
 import React from "react";
 import Link from "next/link";
-import { AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { FiShoppingBag } from "react-icons/fi";
 
 import { useStateContext } from "~lib/context";
 
-import { NavStyle, NavItems } from "~styles/components/NavStyle";
+import { NavStyle, NavItems, NavCart } from "~styles/components/NavStyle";
+
+import { qtyAnimation } from "~animations/components/NavAnimation";
 
 import Cart from "~components/Cart";
 
@@ -16,11 +18,13 @@ const Nav = () => {
     <NavStyle>
       <Link href="/">Styled.</Link>
       <NavItems>
-        <div onClick={() => setShowCart(true)}>
-          {totalQty > 0 && <span>{totalQty}</span>}
+        <NavCart onClick={() => setShowCart(true)}>
+          {totalQty > 0 && (
+            <motion.span {...qtyAnimation}>{totalQty}</motion.span>
+          )}
           <FiShoppingBag />
           <h3>Cart</h3>
-        </div>
+        </NavCart>
       </NavItems>
       <AnimatePresence>{showCart && <Cart />}</AnimatePresence>
     </NavStyle>

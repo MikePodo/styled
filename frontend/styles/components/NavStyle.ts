@@ -15,13 +15,15 @@ export const NavItems = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
-  div {
-    margin-left: 3rem;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+`;
+
+export const NavCart = styled.div`
+  cursor: pointer;
+  margin-left: 3rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   h3 {
     padding: 0.25rem;
   }

@@ -17,8 +17,27 @@ export const EmptyAnimation = {
   transition: { delay: 0.2 },
 };
 
+export const ProductCardStaggerAnimation = {
+  variants: {
+    hidden: { opacity: 1 },
+    show: {
+      opacity: 1,
+      transition: { delayChildren: 0.4, staggerChildren: 0.1 },
+    },
+  },
+  initial: "hidden",
+  animate: "show",
+  layout: true,
+};
+
 export const ProductCardAnimation = {
-  initial: { opacity: 0, scale: 0.8 },
-  animate: { opacity: 1, scale: 1 },
-  transition: { delay: 0.3 },
+  variants: {
+    hidden: { opacity: 0, scale: 0.8 },
+    show: { opacity: 1, scale: 1 },
+  },
+  layout: true,
+};
+
+export const CheckoutAnimation = {
+  layout: true,
 };

@@ -39,6 +39,8 @@ export const EmptyStyle = styled(motion.div)`
   }
 `;
 
+export const ProductCardStaggerStyle = styled(motion.div)``;
+
 export const ProductCardStyle = styled(motion.div)`
   display: flex;
   align-items: center;
