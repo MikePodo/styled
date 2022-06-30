@@ -7,7 +7,7 @@ import { useStateContext } from "~lib/context";
 
 import { NavStyle, NavItems, NavCart } from "~styles/components/NavStyle";
 
-import { qtyAnimation } from "~animations/components/NavAnimation";
+import { QtyAnimation } from "~animations/components/NavAnimation";
 
 import Cart from "~components/Cart";
 
@@ -20,7 +20,7 @@ const Nav = () => {
       <NavItems>
         <NavCart onClick={() => setShowCart(true)}>
           {totalQty > 0 && (
-            <motion.span {...qtyAnimation}>{totalQty}</motion.span>
+            <motion.span {...QtyAnimation}>{totalQty}</motion.span>
           )}
           <FiShoppingBag />
           <h3>Cart</h3>

@@ -1,9 +1,9 @@
-import type { NextPage } from "next";
 import { useQuery } from "urql";
 
-import { PRODUCT_QUERY } from "~lib/query";
-
+import type { NextPage } from "next";
 import { ProductType } from "~types/ProductsType";
+
+import { PRODUCT_QUERY } from "~lib/query";
 
 import { GalleryStyle } from "~styles/util/GalleryStyle";
 

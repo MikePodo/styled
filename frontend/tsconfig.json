@@ -20,7 +20,8 @@
       "~styles/*": ["./styles/*"],
       "~animations/*": ["./animations/*"],
       "~lib/*": ["./lib/*"],
-      "~types/*": ["./types/*"]
+      "~types/*": ["./types/*"],
+      "~public/*": ["./public/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

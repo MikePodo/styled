@@ -1,12 +1,14 @@
-import type { NextApiRequest, NextApiResponse } from "next";
 import Stripe from "stripe";
 
+import type { NextApiRequest, NextApiResponse } from "next";
 import { ProductType } from "~types/ProductsType";
 
 type CartProductType = ProductType["attributes"] & { qty: number };
 
 const STRIPE_SECRET: string = process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY!;
-const stripe = new Stripe(STRIPE_SECRET, {} as Stripe.StripeConfig);
+const stripe = new Stripe(STRIPE_SECRET, {
+  typescript: true,
+} as Stripe.StripeConfig);
 
 export default async function handler(
   req: NextApiRequest,
@@ -44,7 +46,7 @@ export default async function handler(
           };
         }),
         //Bring user to success or fail page
-        success_url: `${req.headers.origin}/success`,
+        success_url: `${req.headers.origin}/success?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${req.headers.origin}/cancelled`,
       });
       res.status(200).json(session);
