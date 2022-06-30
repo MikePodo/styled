@@ -19,8 +19,13 @@ export default async function handler(
         mode: "payment",
         payment_method_types: ["card"],
         shipping_address_collection: {
-          allowed_countries: ["US", "CA"],
+          allowed_countries: ["US", "CA", "GB", "RO", "DE", "IN"],
         },
+        allow_promotion_codes: true,
+        shipping_options: [
+          { shipping_rate: "shr_1LGEz1HewnbUxex8wIAvFjpw" },
+          { shipping_rate: "shr_1LGF76HewnbUxex8vjRHzwfc" },
+        ],
         line_items: req.body.map((item: CartProductType) => {
           return {
             price_data: {
@@ -31,12 +36,16 @@ export default async function handler(
               },
               unit_amount: item.price * 100,
             },
+            adjustable_quantity: {
+              enabled: true,
+              minimum: 1,
+            },
             quantity: item.qty,
           };
         }),
         //Bring user to success or fail page
         success_url: `${req.headers.origin}/success`,
-        cancel_url: `${req.headers.origin}/canceled`,
+        cancel_url: `${req.headers.origin}/cancelled`,
       });
       res.status(200).json(session);
     } catch (e: any) {
