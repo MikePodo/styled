@@ -1,15 +1,21 @@
 import React from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { FiShoppingBag } from "react-icons/fi";
 
 import { useStateContext } from "~lib/context";
 
-import { NavStyle, NavItems, NavCart } from "~styles/components/NavStyle";
+import {
+  NavStyle,
+  NavItems,
+  NavCart,
+  NavCartQty,
+} from "~styles/components/NavStyle";
 
 import { QtyAnimation } from "~animations/components/NavAnimation";
 
 import Cart from "~components/Cart";
+import User from "~components/User";
 
 const Nav = () => {
   const { showCart, setShowCart, totalQty } = useStateContext();
@@ -18,9 +24,10 @@ const Nav = () => {
     <NavStyle>
       <Link href="/">Styled.</Link>
       <NavItems>
+        <User />
         <NavCart onClick={() => setShowCart(true)}>
           {totalQty > 0 && (
-            <motion.span {...QtyAnimation}>{totalQty}</motion.span>
+            <NavCartQty {...QtyAnimation}>{totalQty}</NavCartQty>
           )}
           <FiShoppingBag />
           <h3>Cart</h3>
