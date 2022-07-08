@@ -1,4 +1,5 @@
 import Stripe from "stripe";
+import { getSession } from "@auth0/nextjs-auth0";
 
 import type { NextApiRequest, NextApiResponse } from "next";
 import { ProductType } from "~types/ProductsType";
@@ -15,10 +16,15 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === "POST") {
+    const userSession = getSession(req, res);
+    const stripeId: string | undefined =
+      userSession?.user?.["http://localhost:3000/stripe_customer_id"];
+
     try {
       const session = await stripe.checkout.sessions.create({
         submit_type: "pay",
         mode: "payment",
+        ...(stripeId && { customer: stripeId }),
         payment_method_types: ["card"],
         shipping_address_collection: {
           allowed_countries: ["US", "CA", "GB", "RO", "DE", "IN"],
