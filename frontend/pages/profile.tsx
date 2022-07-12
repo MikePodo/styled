@@ -14,7 +14,8 @@ interface ProfileProps {
   orders: Stripe.PaymentIntent[];
 }
 
-const Profile = ({ user, orders }: ProfileProps) => {
+const Profile = ({ user, orders, BASE_URL }: ProfileProps) => {
+  console.log("BASE_URL", BASE_URL);
   const router = useRouter();
 
   return (
@@ -57,6 +58,6 @@ export const getServerSideProps = withPageAuthRequired({
       customer: stripeId,
     });
 
-    return { props: { orders: paymentIntents.data } };
+    return { props: { orders: paymentIntents.data, BASE_URL } };
   },
 });
