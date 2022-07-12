@@ -18,7 +18,7 @@ export default async function handler(
   if (req.method === "POST") {
     const userSession = getSession(req, res);
     const stripeId: string | undefined =
-      userSession?.user?.["http://localhost:3000/stripe_customer_id"];
+      userSession?.user?.[`${process.env.BASE_URL}/stripe_customer_id`];
 
     try {
       const session = await stripe.checkout.sessions.create({
