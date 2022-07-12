@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import devices from "~styles/util/MediaSizes";
 
 export const CartWrapperStyle = styled(motion.div)`
   position: fixed;
@@ -16,9 +17,24 @@ export const CartWrapperStyle = styled(motion.div)`
 export const CartStyle = styled(motion.div)`
   width: 30%;
   background: #f1f1f1;
-  padding: 2rem 5rem;
+  padding: 2rem 3rem;
   overflow-y: scroll;
   position: relative;
+
+  @media ${devices.laptopM} {
+    width: 40%;
+    padding: 2rem;
+  }
+  @media ${devices.mobileL} {
+    width: 60%;
+  }
+  @media ${devices.mobileM} {
+    width: 80%;
+    padding: 1rem;
+  }
+  @media ${devices.mobileS} {
+    width: 90%;
+  }
 `;
 
 export const EmptyStyle = styled(motion.div)`
@@ -32,10 +48,16 @@ export const EmptyStyle = styled(motion.div)`
   h1 {
     font-size: 2rem;
     padding: 2rem;
+    @media ${devices.mobileM} {
+      font-size: 1.2rem;
+    }
   }
   svg {
     font-size: 10rem;
     color: var(--secondary);
+    @media ${devices.mobileM} {
+      font-size: 6rem;
+    }
   }
 `;
 

@@ -17,5 +17,6 @@ export const ProfileStyle = styled.div`
   }
   h3 {
     padding: 0.25rem;
+    text-align: center;
   }
 `;

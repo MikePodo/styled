@@ -6,7 +6,7 @@ import type { AppProps } from "next/app";
 
 import { StateContext } from "~lib/context";
 
-import "~styles/globals.css";
+import GlobalStyles from "~styles/util/GlobalStyles";
 
 import Nav from "~components/Nav";
 
@@ -18,6 +18,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <UserProvider>
       <StateContext>
         <Provider value={client}>
+          <GlobalStyles />
           <Toaster />
           <Nav />
           <Component {...pageProps} />

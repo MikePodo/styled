@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import devices from "~styles/util/MediaSizes";
 
 export const ProductDetailsStyle = styled.div`
   display: flex;
@@ -7,6 +8,19 @@ export const ProductDetailsStyle = styled.div`
   img {
     width: 40%;
     object-fit: cover;
+  }
+  @media ${devices.mobileM} {
+    flex-direction: column;
+    align-items: center;
+    img {
+      width: 70%;
+      margin-bottom: 2rem;
+    }
+  }
+  @media ${devices.mobileS} {
+    img {
+      width: 90%;
+    }
   }
 `;
 
@@ -17,6 +31,12 @@ export const ProductInfoStyle = styled.div`
     font-weight: medium;
     padding: 0.5rem 1rem;
     cursor: pointer;
+  }
+  @media ${devices.mobileM} {
+    width: 70%;
+  }
+  @media ${devices.mobileS} {
+    width: 90%;
   }
 `;
 
