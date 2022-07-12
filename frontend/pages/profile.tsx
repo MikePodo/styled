@@ -3,7 +3,9 @@ import { useRouter } from "next/router";
 import Stripe from "stripe";
 import { withPageAuthRequired, getSession, Session } from "@auth0/nextjs-auth0";
 
-import { OrderStyle } from "~styles/pages/ProfileStyle";
+import formatMoney from "~lib/formatMoney";
+
+import { OrderStyle, LogoutButtonStyle } from "~styles/pages/ProfileStyle";
 
 interface ProfileProps {
   user: Session;
@@ -22,12 +24,14 @@ const Profile = ({ user, orders }: ProfileProps) => {
           {orders.map((order) => (
             <OrderStyle key={order.id}>
               <h1>Order Number: {order.id}</h1>
-              <h2>Amount: {order.amount}</h2>
+              <h2>Amount: {formatMoney(order.amount)}</h2>
               <h2>Receipt Email: {user.email}</h2>
             </OrderStyle>
           ))}
         </div>
-        <button onClick={() => router.push("/api/auth/logout")}>Logout</button>
+        <LogoutButtonStyle onClick={() => router.push("/api/auth/logout")}>
+          Logout
+        </LogoutButtonStyle>
       </div>
     )
   );

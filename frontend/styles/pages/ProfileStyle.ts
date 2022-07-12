@@ -11,3 +11,12 @@ export const OrderStyle = styled.div`
     font-size: 1rem;
   }
 `;
+
+export const LogoutButtonStyle = styled.button`
+  color: white;
+  border-radius: 0;
+  border: none;
+  padding: 0.5rem 1rem;
+  background: var(--primary);
+  cursor: pointer;
+`;
