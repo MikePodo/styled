@@ -45,12 +45,13 @@ export default Profile;
 export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {
     const STRIPE_SECRET: string = process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY!;
-    const BASE_URL: string = process.env.BASE_URL!;
+    const BASE_URL: string = process.env.NEXT_PUBLIC_BASE_URL!;
     const stripe = new Stripe(STRIPE_SECRET, {
       typescript: true,
     } as Stripe.StripeConfig);
 
     const session = getSession(ctx.req, ctx.res);
+
     const stripeId: string = session?.user[`${BASE_URL}/stripe_customer_id`];
     const paymentIntents = await stripe?.paymentIntents.list({
       customer: stripeId,
