@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import { useQuery } from "urql";
 import toast from "react-hot-toast";
@@ -17,6 +17,11 @@ import {
 } from "~styles/pages/product/ProductDetailsStyle";
 
 const ProductDetails = () => {
+  //Reset qty
+  useEffect(() => {
+    setQty(1);
+  }, []);
+
   //Router query
   const { query } = useRouter();
 
@@ -28,7 +33,8 @@ const ProductDetails = () => {
   const { data, fetching, error } = results;
 
   //Context state
-  const { qty, increaseQty, decreaseQty, onAddProduct } = useStateContext();
+  const { qty, setQty, increaseQty, decreaseQty, onAddProduct } =
+    useStateContext();
 
   if (fetching) return <h2>Loading...</h2>;
   if (error) return <h2>An error has occurred: {error.message}</h2>;

@@ -7,6 +7,7 @@ type CartProductType = ProductType["attributes"] & { qty: number };
 
 interface DefaultContext {
   qty: number;
+  setQty: SetStateType<number>;
   totalQty: number;
   totalPrice: number;
   increaseQty: () => void;
@@ -92,6 +93,7 @@ export const StateContext = ({ children }: ContextProps) => {
     <ShopContext.Provider
       value={{
         qty,
+        setQty,
         totalQty,
         totalPrice,
         increaseQty,
