@@ -7,6 +7,8 @@ import formatMoney from "~lib/formatMoney";
 
 import { OrderStyle, LogoutButtonStyle } from "~styles/pages/ProfileStyle";
 
+import PageHead from "~components/PageHead";
+
 interface ProfileProps {
   user: Session;
   orders: Stripe.PaymentIntent[];
@@ -18,6 +20,7 @@ const Profile = ({ user, orders }: ProfileProps) => {
   return (
     user && (
       <div>
+        <PageHead title="Profile" />
         <h2>{user.name}</h2>
         <p>{user.email}</p>
         <div>

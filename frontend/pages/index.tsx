@@ -7,6 +7,7 @@ import { PRODUCT_QUERY } from "~lib/query";
 
 import { GalleryStyle } from "~styles/util/GalleryStyle";
 
+import PageHead from "~components/PageHead";
 import Product from "~components/Product";
 
 const Home: NextPage = () => {
@@ -21,6 +22,7 @@ const Home: NextPage = () => {
 
   return (
     <div>
+      <PageHead title="Home" />
       <GalleryStyle>
         {products.map((product: ProductType) => (
           <Product product={product} key={product.attributes.slug} />

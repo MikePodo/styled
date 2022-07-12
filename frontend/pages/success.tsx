@@ -19,6 +19,8 @@ import {
 
 import { CardAnimation } from "~animations/pages/SuccessAnimation";
 
+import PageHead from "~components/PageHead";
+
 interface SuccessProps {
   order: Stripe.Response<Stripe.Checkout.Session>;
 }
@@ -28,6 +30,7 @@ const Success = ({ order }: SuccessProps) => {
 
   return (
     <SuccessWrapperStyle>
+      <PageHead title="Success" />
       <SuccessCardStyle {...CardAnimation}>
         <h1>Thank you for your order</h1>
         <h2>A confirmation email has been sent to</h2>

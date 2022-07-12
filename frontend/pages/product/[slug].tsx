@@ -16,6 +16,8 @@ import {
   BuyStyle,
 } from "~styles/pages/product/ProductDetailsStyle";
 
+import PageHead from "~components/PageHead";
+
 const ProductDetails = () => {
   //Reset qty
   useEffect(() => {
@@ -54,6 +56,7 @@ const ProductDetails = () => {
 
   return (
     <ProductDetailsStyle>
+      <PageHead title={title} />
       <img src={image.data.attributes.formats.medium.url} alt={title} />
       <ProductInfoStyle>
         <h3>{title}</h3>
