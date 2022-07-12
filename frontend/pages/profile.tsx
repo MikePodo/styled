@@ -12,11 +12,11 @@ import PageHead from "~components/PageHead";
 interface ProfileProps {
   user: Session;
   orders: Stripe.PaymentIntent[];
-  BASE_URL: string;
+  stripeId: string;
 }
 
-const Profile = ({ user, orders, BASE_URL }: ProfileProps) => {
-  console.log("BASE_URL", BASE_URL);
+const Profile = ({ user, orders, stripeId }: ProfileProps) => {
+  console.log("stripeId", stripeId);
   const router = useRouter();
 
   return (
@@ -59,6 +59,6 @@ export const getServerSideProps = withPageAuthRequired({
       customer: stripeId,
     });
 
-    return { props: { orders: paymentIntents.data, BASE_URL } };
+    return { props: { orders: paymentIntents.data, stripeId } };
   },
 });
