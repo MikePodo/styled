@@ -1,5 +1,6 @@
 import { Provider, createClient } from "urql";
 import { UserProvider } from "@auth0/nextjs-auth0";
+import { Toaster } from "react-hot-toast";
 
 import type { AppProps } from "next/app";
 
@@ -17,6 +18,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <UserProvider>
       <StateContext>
         <Provider value={client}>
+          <Toaster />
           <Nav />
           <Component {...pageProps} />
         </Provider>

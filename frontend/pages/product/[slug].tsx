@@ -1,6 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { useQuery } from "urql";
+import toast from "react-hot-toast";
 import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
 
 import { GET_PRODUCT_QUERY } from "~lib/query";
@@ -32,6 +33,12 @@ const ProductDetails = () => {
   if (fetching) return <h2>Loading...</h2>;
   if (error) return <h2>An error has occurred: {error.message}</h2>;
 
+  //Create toast
+  const notify = () => {
+    toast.success(`${title} added to your cart`, { duration: 1500 });
+  };
+
+  //Extract product data
   const {
     title,
     description,
@@ -56,7 +63,10 @@ const ProductDetails = () => {
           </button>
         </QuantityStyle>
         <BuyStyle
-          onClick={() => onAddProduct(data.products.data[0].attributes, qty)}
+          onClick={() => {
+            onAddProduct(data.products.data[0].attributes, qty);
+            notify();
+          }}
         >
           Add to cart
         </BuyStyle>

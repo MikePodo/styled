@@ -7,6 +7,8 @@ import type { GetServerSideProps } from "next";
 
 import shiba from "~public/shiba.png";
 
+import formatMoney from "lib/formatMoney";
+
 import {
   SuccessWrapperStyle,
   SuccessCardStyle,
@@ -58,7 +60,7 @@ const Success = ({ order }: SuccessProps) => {
               <div key={item.id}>
                 <p>Product: {item.description}</p>
                 <p>Quantity: {item.quantity}</p>
-                <p>Price: {item.price?.unit_amount}</p>
+                <p>Price: {formatMoney(item.price?.unit_amount ?? 0)}</p>
               </div>
             ))}
           </SuccessOrderInfo>
