@@ -12,12 +12,9 @@ import PageHead from "~components/PageHead";
 interface ProfileProps {
   user: Session;
   orders: Stripe.PaymentIntent[];
-  session?: string;
 }
 
-const Profile = ({ user, orders, session }: ProfileProps) => {
-  console.log("user", user);
-  console.log("session", session);
+const Profile = ({ user, orders }: ProfileProps) => {
   const router = useRouter();
 
   return (
@@ -61,7 +58,7 @@ export const getServerSideProps = withPageAuthRequired({
     });
 
     return {
-      props: { orders: paymentIntents.data, session: JSON.stringify(session) },
+      props: { orders: paymentIntents.data },
     };
   },
 });
