@@ -36,6 +36,7 @@ export const OrderStyle = styled.div`
 
 export const LogoutButtonStyle = styled.button`
   color: white;
+  margin: 1rem 0;
   border-radius: 0;
   border: none;
   padding: 0.5rem 1rem;

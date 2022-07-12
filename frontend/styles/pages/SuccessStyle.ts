@@ -1,8 +1,15 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import devices from "~styles/util/MediaSizes";
 
 export const SuccessWrapperStyle = styled.div`
-  margin: 1rem 15rem;
+  margin: 1rem 10rem;
+  @media ${devices.laptopM} {
+    margin: 1rem 5rem;
+  }
+  @media ${devices.mobileL} {
+    margin: 1rem;
+  }
 `;
 
 export const SuccessCardStyle = styled(motion.div)`
