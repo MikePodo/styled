@@ -12,6 +12,7 @@ import PageHead from "~components/PageHead";
 interface ProfileProps {
   user: Session;
   orders: Stripe.PaymentIntent[];
+  BASE_URL: string;
 }
 
 const Profile = ({ user, orders, BASE_URL }: ProfileProps) => {
